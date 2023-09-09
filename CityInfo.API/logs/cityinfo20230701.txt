@@ -1,0 +1,5 @@
+2023-07-01 20:58:24.212 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2023-07-01 20:59:52.784 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2023-07-01 21:12:27.989 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2023-07-01 21:12:28.699 +05:30 [DBG] Entity Framework Core 7.0.8 initialized 'CityInfoContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:7.0.8' with options: None
+2023-07-01 21:12:28.953 +05:30 [DBG] 'CityInfoContext' disposed.
