@@ -7,32 +7,45 @@ namespace CityInfo.API.Controllers
     [Route("api/cities")]
     public class CitiesController : ControllerBase
     {
-        private CitiesDataStore _citiesDataStore;
+        private ICityInfoRepository _cityInfoRepository;
 
-        public CitiesController(CitiesDataStore citiesDataStore) 
+        public CitiesController(ICityInfoRepository cityInfoRepository) 
         {
-            _citiesDataStore = citiesDataStore ?? throw new ArgumentNullException(nameof(citiesDataStore));
+            _cityInfoRepository = cityInfoRepository ?? throw new ArgumentNullException(nameof(cityInfoRepository));
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CityDto>> GetCities()
+        public async Task<ActionResult<IEnumerable<CityWithoutPointsOfInterestDTO>>> GetCities()
         {
-            return Ok(_citiesDataStore.Cities);
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<CityDto> GetCity(int id)
-        {
-            var cityToReturn = _citiesDataStore.Cities.FirstOrDefault(c => c.Id == id);
-            if(cityToReturn == null)
+            var cityEntities = await _cityInfoRepository.GetCitiesAsync();
+            var results = new List<CityWithoutPointsOfInterestDTO>();
+            foreach (var city in cityEntities)
             {
-                return NotFound();
+                results.Add(new CityWithoutPointsOfInterestDTO()
+                {
+                    Id = city.Id,
+                    Description = city.Description,
+                    Name = city.Name
+                });
             }
-            return Ok(cityToReturn);
 
-            //return new JsonResult(
-            //    CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id)
-            //);
+            return Ok(results);
+            //return Ok(_citiesDataStore.Cities);
         }
+
+        //[HttpGet("{id}")]
+        //public ActionResult<CityDto> GetCity(int id)
+        //{
+        //    var cityToReturn = _citiesDataStore.Cities.FirstOrDefault(c => c.Id == id);
+        //    if(cityToReturn == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(cityToReturn);
+
+        //    //return new JsonResult(
+        //    //    CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id)
+        //    //);
+        //}
     }
 }

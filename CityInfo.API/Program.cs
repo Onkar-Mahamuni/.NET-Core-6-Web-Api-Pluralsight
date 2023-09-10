@@ -56,7 +56,12 @@ builder.Services.AddSingleton<CitiesDataStore>();
 
 //Way 2. To initialize the database- To let it know where to find this database
 builder.Services.AddDbContext<CityInfoContext>(
-    DbContextOptions => DbContextOptions.UseSqlite("Data Source = CityInfo.db"));
+    DbContextOptions => DbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:CityInfoDBConnectionString"]));
+
+//Environment variable overridides all other variables in connection environment
+
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+
 
 var app = builder.Build();
 
