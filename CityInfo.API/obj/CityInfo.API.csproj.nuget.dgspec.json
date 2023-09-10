@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Work\\WoltersWorkPractice\\CityInfo-Pluralsight\\CityInfo.API\\CityInfo.API.csproj": {}
+    "E:\\Work\\WoltersWorkPractice\\GitHub-Repo\\.NET-Core-6-Web-Api-Pluralsight\\CityInfo.API\\CityInfo.API.csproj": {}
   },
   "projects": {
-    "E:\\Work\\WoltersWorkPractice\\CityInfo-Pluralsight\\CityInfo.API\\CityInfo.API.csproj": {
+    "E:\\Work\\WoltersWorkPractice\\GitHub-Repo\\.NET-Core-6-Web-Api-Pluralsight\\CityInfo.API\\CityInfo.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Work\\WoltersWorkPractice\\CityInfo-Pluralsight\\CityInfo.API\\CityInfo.API.csproj",
+        "projectUniqueName": "E:\\Work\\WoltersWorkPractice\\GitHub-Repo\\.NET-Core-6-Web-Api-Pluralsight\\CityInfo.API\\CityInfo.API.csproj",
         "projectName": "CityInfo.API",
-        "projectPath": "E:\\Work\\WoltersWorkPractice\\CityInfo-Pluralsight\\CityInfo.API\\CityInfo.API.csproj",
+        "projectPath": "E:\\Work\\WoltersWorkPractice\\GitHub-Repo\\.NET-Core-6-Web-Api-Pluralsight\\CityInfo.API\\CityInfo.API.csproj",
         "packagesPath": "C:\\Users\\Soft\\.nuget\\packages\\",
-        "outputPath": "E:\\Work\\WoltersWorkPractice\\CityInfo-Pluralsight\\CityInfo.API\\obj\\",
+        "outputPath": "E:\\Work\\WoltersWorkPractice\\GitHub-Repo\\.NET-Core-6-Web-Api-Pluralsight\\CityInfo.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Soft\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.JsonPatch": {
               "target": "Package",
               "version": "[7.0.7, )"
