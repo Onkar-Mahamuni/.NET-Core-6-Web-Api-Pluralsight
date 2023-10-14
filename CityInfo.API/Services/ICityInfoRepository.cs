@@ -5,6 +5,8 @@ namespace CityInfo.API.Services
     public interface ICityInfoRepository
     {
         Task<IEnumerable<City>> GetCitiesAsync();
+        Task<(IEnumerable<City>, PaginationMetadata)> GetCitiesAsync(string? name, string? searchQuery, int pageNumber, int pageSize);
+
         // To free up the thread as soon as possible otherwise the clients might get 503 service unavailable
         Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest);
         Task<bool> CityExistsAsync(int cityId);

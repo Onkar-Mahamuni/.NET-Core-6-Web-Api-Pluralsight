@@ -196,3 +196,8 @@ E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo
 E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\obj\Debug\net6.0\CityInfo.API.pdb
 E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\obj\Debug\net6.0\CityInfo.API.genruntimeconfig.cache
 E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\obj\Debug\net6.0\ref\CityInfo.API.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
