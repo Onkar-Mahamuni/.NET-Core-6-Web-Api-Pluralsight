@@ -15,6 +15,7 @@ namespace CityInfo.API.Services
         Task AddPointOfInterestForCityAsync(int cityId, PointOfInterest pointOfInterest);
         Task<bool> SaveChangesAsync();
         void DeletePointOfInterest(PointOfInterest pointOfInterest); //It is not async becuase it is not a memory or IO operation, it can be made async if it is using any async method in between operations etc.
+        Task<bool> CityNameMatchesCityId(string? cityName, int cityId);
 
     }
 }

@@ -201,3 +201,8 @@ E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo
 E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+E:\Work\WoltersWorkPractice\GitHub-Repo\.NET-Core-6-Web-Api-Pluralsight\CityInfo.API\bin\Debug\net6.0\CityInfo.API.xml

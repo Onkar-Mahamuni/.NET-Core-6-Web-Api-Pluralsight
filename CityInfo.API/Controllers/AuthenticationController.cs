@@ -63,8 +63,8 @@ namespace CityInfo.API.Controllers
             var claimsForToken = new List<Claim>();
             claimsForToken.Add(new Claim("sub", user.UserId.ToString())); //sub is standardized name
             claimsForToken.Add(new Claim("given_name", user.FirstName));
-            claimsForToken.Add(new Claim("sub", user.LastName));
-            claimsForToken.Add(new Claim("sub", user.City));
+            claimsForToken.Add(new Claim("family_name", user.LastName));
+            claimsForToken.Add(new Claim("city", user.City));
 
             //Making jwt token
             var jwtSecurityToken = new JwtSecurityToken(
@@ -88,7 +88,7 @@ namespace CityInfo.API.Controllers
             // Using in memory validation as we are not generating any database for storing users in this course
             // For demo, we assume the credentials are valid 
             // return a new CityInfoUser
-            return new CityInfoUser(1, userName ?? "", "Kevin", "Dockx", "Antwerp");
+            return new CityInfoUser(1, userName ?? "", "Kevin", "Dockx", "ABC");
         }
     }
 }

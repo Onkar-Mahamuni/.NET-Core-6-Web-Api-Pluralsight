@@ -3,7 +3,11 @@ using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Reflection;
+using System.Text;
 
 //Logger configuration for serilog
 Log.Logger = new LoggerConfiguration()
@@ -33,8 +37,36 @@ builder.Services.AddControllers(
  .AddXmlDataContractSerializerFormatters(); // adds support for xml response from all APIs
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer(); //Used by Swashbuckle to generate api specifications
+builder.Services.AddSwaggerGen(setupAction =>
+{ // These are the parameters for swagger api documentation configuration
+    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"; // api docs file path
+    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile); // Full path of the file
+
+    setupAction.IncludeXmlComments(xmlCommentsFullPath); // To tell Swashbuckle to read the docs from
+
+    setupAction.AddSecurityDefinition("CityInfoApiBearerAuth", new OpenApiSecurityScheme() // This is to add authentication support to our documentation 
+    {
+        Type = SecuritySchemeType.Http, // Specify security type
+        Scheme = "Bearer", // Scurity scheme like OAuth, OpenAPI or Bearer
+        Description = "Input a valid token to access this API" // The message we want
+    });
+
+    setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "CityInfoApiBearerAuth"
+                }
+            }, new List<string>() //Used when tokens in scope, but we are not using scopes hence passing an aempty list
+        } 
+    });
+
+}); //Registers the services that are used to effectively generate the specs
 
 // Injects a content type of the file 
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
@@ -65,6 +97,36 @@ builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
 // To add automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+//For token validation
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Authentication:Issuer"],
+            ValidAudience = builder.Configuration["Authentication:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["Authentication:SecretForKey"]))
+        };
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MustBeFromABC", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("city", "ABC");
+    });
+});
+
+builder.Services.AddApiVersioning(setupAction =>
+{
+    setupAction.AssumeDefaultVersionWhenUnspecified = true;
+    setupAction.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    setupAction.ReportApiVersions = true;
+});
 
 var app = builder.Build();
 
@@ -76,6 +138,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//Authentication should be before authorization
+app.UseAuthentication();
 
 app.UseAuthorization();
 

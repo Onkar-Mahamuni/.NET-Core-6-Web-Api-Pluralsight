@@ -2,12 +2,15 @@
 using CityInfo.API.Entities;
 using CityInfo.API.Models;
 using CityInfo.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CityInfo.API.Controllers
 {
-    [Route("api/cities/{cityId}/pointsofinterest")]
+    [Route("api/v{version:apiVersion}/cities/{cityId}/pointsofinterest")]
+    [Authorize(Policy = "MustBeFromABC")]
+    [ApiVersion("2.0")]
     [ApiController]
     public class PointsOfInterestController : ControllerBase
     {
@@ -34,6 +37,14 @@ namespace CityInfo.API.Controllers
                 //// for trial purposes
                 //throw new Exception("Exception sample");
 
+                //Commented to check versioning
+                //var cityName = User.Claims.FirstOrDefault(c => c.Type == "city")?.Value; //User object is defined inside controller base and it's getter is exposed to use, It is of type ClaimsPrincipal conatining multiple claims out of the token
+                //// User can be seen after adding in watch window after htting breakpoint at this method
+
+                //if(!await _cityInfoRepository.CityNameMatchesCityId(cityName, cityId))
+                //{
+                //    return Forbid();
+                //}
 
                 if (! await _cityInfoRepository.CityExistsAsync(cityId))
                 {
